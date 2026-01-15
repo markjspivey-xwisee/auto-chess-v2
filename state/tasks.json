@@ -1,0 +1,277 @@
+{
+  "goal": "Build a browser-based auto chess battler game",
+  "planned_at": "2026-01-15T04:00:00Z",
+  "planning_complete": true,
+  "execution_started": false,
+  "iteration": 0,
+  "tasks": [
+    {
+      "id": "task-001",
+      "description": "Create the main HTML entry point with game container structure, canvas element for the board, and UI panels for shop/stats/controls",
+      "files": [
+        "src/index.html"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "HTML5 document with proper structure",
+        "Game board container (8x8 grid area)",
+        "Shop panel at bottom",
+        "Player stats panel (gold, level, HP)",
+        "Enemy bench preview area",
+        "Links to all CSS and JS files"
+      ],
+      "complexity": 2,
+      "status": "pending"
+    },
+    {
+      "id": "task-002",
+      "description": "Create the main stylesheet with CSS Grid layout for the game board, flexbox for UI panels, unit styling, and visual feedback states",
+      "files": [
+        "src/styles.css"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "8x8 grid board layout using CSS Grid",
+        "Responsive design that fits viewport",
+        "Unit card styling with stats display",
+        "Shop item styling",
+        "Hover/selected states for tiles and units",
+        "Health bar styling",
+        "Animation keyframes for attacks and damage"
+      ],
+      "complexity": 2,
+      "status": "pending"
+    },
+    {
+      "id": "task-003",
+      "description": "Create the game constants and unit data module defining all unit types, their stats, abilities, costs, and trait affiliations",
+      "files": [
+        "src/data.js"
+      ],
+      "dependencies": [],
+      "acceptance_criteria": [
+        "At least 12 unique units across 3 cost tiers (1-3 gold)",
+        "Each unit has: name, cost, hp, attack, attackSpeed, range, traits",
+        "At least 6 traits defined (e.g., Warrior, Mage, Assassin, Tank, Ranger, Elemental)",
+        "Trait bonus definitions (2-piece and 4-piece bonuses)",
+        "Star level upgrade multipliers defined"
+      ],
+      "complexity": 2,
+      "status": "pending"
+    },
+    {
+      "id": "task-004",
+      "description": "Create the game state management module handling player gold, level, XP, HP, bench, board, and round tracking",
+      "files": [
+        "src/state.js"
+      ],
+      "dependencies": [
+        "task-003"
+      ],
+      "acceptance_criteria": [
+        "GameState class with player stats (gold, level, xp, hp)",
+        "Board state (8x8 grid with unit placement)",
+        "Bench state (up to 9 reserve units)",
+        "Round counter and phase tracking (prep/combat)",
+        "Methods: addGold, spendGold, gainXP, levelUp, takeDamage",
+        "Unit pool tracking for shop probabilities",
+        "Save/load state to localStorage"
+      ],
+      "complexity": 3,
+      "status": "pending"
+    },
+    {
+      "id": "task-005",
+      "description": "Create the Unit class with stats, abilities, combat state, star level upgrades, and trait tracking",
+      "files": [
+        "src/unit.js"
+      ],
+      "dependencies": [
+        "task-003"
+      ],
+      "acceptance_criteria": [
+        "Unit class with all stats from data.js",
+        "Current HP, position, target tracking",
+        "Star level (1-3) with stat scaling",
+        "Methods: takeDamage, heal, attack, findTarget, move",
+        "State: idle, moving, attacking, dead",
+        "Clone method for creating instances from templates"
+      ],
+      "complexity": 3,
+      "status": "pending"
+    },
+    {
+      "id": "task-006",
+      "description": "Create the shop system with random unit generation based on level, buying, selling, and refresh mechanics",
+      "files": [
+        "src/shop.js"
+      ],
+      "dependencies": [
+        "task-003",
+        "task-004",
+        "task-005"
+      ],
+      "acceptance_criteria": [
+        "Generate 5 random shop offers based on player level",
+        "Level-based unit tier probabilities",
+        "Buy unit (costs gold, adds to bench)",
+        "Sell unit (refunds partial gold)",
+        "Refresh shop (costs 2 gold)",
+        "Automatic refresh at round start",
+        "Unit combination: 3 same units = 1 star upgrade"
+      ],
+      "complexity": 3,
+      "status": "pending"
+    },
+    {
+      "id": "task-007",
+      "description": "Create the combat system that runs auto-battles between player and enemy units with targeting, movement, and attacks",
+      "files": [
+        "src/combat.js"
+      ],
+      "dependencies": [
+        "task-003",
+        "task-005"
+      ],
+      "acceptance_criteria": [
+        "Combat loop that ticks every 100ms",
+        "Units find nearest enemy target",
+        "Units move toward target if out of range",
+        "Attack execution with damage calculation",
+        "Trait bonuses applied to combat stats",
+        "Combat ends when one side eliminated",
+        "Returns winner and damage dealt"
+      ],
+      "complexity": 4,
+      "status": "pending"
+    },
+    {
+      "id": "task-008",
+      "description": "Create the AI opponent system that generates enemy boards with scaling difficulty per round",
+      "files": [
+        "src/ai.js"
+      ],
+      "dependencies": [
+        "task-003",
+        "task-005"
+      ],
+      "acceptance_criteria": [
+        "Generate enemy board based on current round",
+        "Early rounds (1-5): 1-3 tier-1 units",
+        "Mid rounds (6-10): tier-1 and tier-2 units with some synergies",
+        "Late rounds (11+): full boards with strong synergies",
+        "Random but sensible unit positioning",
+        "Boss rounds every 5th round with buffed units"
+      ],
+      "complexity": 3,
+      "status": "pending"
+    },
+    {
+      "id": "task-009",
+      "description": "Create the synergy/trait system that calculates active traits and applies bonuses to units",
+      "files": [
+        "src/traits.js"
+      ],
+      "dependencies": [
+        "task-003",
+        "task-005"
+      ],
+      "acceptance_criteria": [
+        "Calculate active traits from board units",
+        "Apply trait bonuses (2/4 piece thresholds)",
+        "Warrior: bonus armor",
+        "Mage: bonus spell damage",
+        "Assassin: crit chance",
+        "Tank: bonus HP",
+        "Ranger: bonus attack speed",
+        "Elemental: AoE damage on death",
+        "Display active synergies in UI"
+      ],
+      "complexity": 3,
+      "status": "pending"
+    },
+    {
+      "id": "task-010",
+      "description": "Create the board renderer using Canvas or DOM that draws the grid, units, health bars, and combat animations",
+      "files": [
+        "src/renderer.js"
+      ],
+      "dependencies": [
+        "task-001",
+        "task-003",
+        "task-005"
+      ],
+      "acceptance_criteria": [
+        "Render 8x8 grid with alternating colors",
+        "Render units on their positions with sprites/icons",
+        "Health bars above units",
+        "Star level indicators",
+        "Attack animations (projectile or melee flash)",
+        "Damage numbers floating up",
+        "Highlight valid placement tiles",
+        "Smooth unit movement during combat"
+      ],
+      "complexity": 4,
+      "status": "pending"
+    },
+    {
+      "id": "task-011",
+      "description": "Create the UI controller handling shop clicks, drag-drop for unit placement, and game control buttons",
+      "files": [
+        "src/ui.js"
+      ],
+      "dependencies": [
+        "task-001",
+        "task-004",
+        "task-006"
+      ],
+      "acceptance_criteria": [
+        "Click to buy from shop",
+        "Drag unit from bench to board",
+        "Drag unit on board to reposition",
+        "Drag unit to bench to remove from board",
+        "Click unit to sell (with confirmation)",
+        "Buy XP button",
+        "Refresh shop button",
+        "Start combat button",
+        "Update all UI elements on state change"
+      ],
+      "complexity": 3,
+      "status": "pending"
+    },
+    {
+      "id": "task-012",
+      "description": "Create the main game controller that orchestrates game flow, round phases, and ties all systems together",
+      "files": [
+        "src/game.js"
+      ],
+      "dependencies": [
+        "task-004",
+        "task-006",
+        "task-007",
+        "task-008",
+        "task-009",
+        "task-010",
+        "task-011"
+      ],
+      "acceptance_criteria": [
+        "Initialize all game systems",
+        "Game phases: Prep (30s) -> Combat -> Results",
+        "Round progression with gold income",
+        "Interest gold (10 percent of current, max 5)",
+        "Win/lose streak bonuses",
+        "Player HP damage based on surviving enemies",
+        "Game over at 0 HP with score display",
+        "New game / restart functionality"
+      ],
+      "complexity": 4,
+      "status": "pending"
+    }
+  ],
+  "progress": {
+    "total": 12,
+    "completed": 0,
+    "in_progress": 0,
+    "pending": 12
+  }
+}

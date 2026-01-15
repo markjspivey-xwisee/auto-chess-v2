@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Auto Chess - A tactical auto-battler game">
+    <title>Auto Chess</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <header id="game-header">
+            <h1>Auto Chess</h1>
+            <div id="round-info">
+                <span id="round-number">Round: 1</span>
+                <span id="phase-indicator">Preparation Phase</span>
+            </div>
+        </header>
+
+        <main id="game-main">
+            <aside id="player-stats-panel">
+                <div class="stat-item">
+                    <span class="stat-label">Gold:</span>
+                    <span id="player-gold" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Level:</span>
+                    <span id="player-level" class="stat-value">1</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">XP:</span>
+                    <span id="player-xp" class="stat-value">0/4</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">HP:</span>
+                    <span id="player-hp" class="stat-value">100</span>
+                </div>
+                <button id="buy-xp-btn" class="action-btn">Buy XP (4g)</button>
+            </aside>
+
+            <section id="arena-section">
+                <div id="enemy-bench" class="bench-area">
+                    <h2>Enemy Units</h2>
+                    <div id="enemy-bench-slots" class="bench-slots">
+                        <!-- Enemy bench slots populated by JS -->
+                    </div>
+                </div>
+
+                <div id="game-board">
+                    <!-- 8x8 grid for the game board -->
+                    <div id="board-grid">
+                        <!-- Board cells populated by JS -->
+                    </div>
+                </div>
+
+                <div id="player-bench" class="bench-area">
+                    <h2>Your Bench</h2>
+                    <div id="player-bench-slots" class="bench-slots">
+                        <!-- Player bench slots populated by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <aside id="traits-panel">
+                <h2>Active Traits</h2>
+                <ul id="traits-list">
+                    <!-- Traits populated by JS -->
+                </ul>
+            </aside>
+        </main>
+
+        <footer id="shop-panel">
+            <div id="shop-header">
+                <h2>Shop</h2>
+                <button id="refresh-shop-btn" class="action-btn">Refresh (2g)</button>
+                <button id="lock-shop-btn" class="action-btn">Lock</button>
+            </div>
+            <div id="shop-units">
+                <div class="shop-slot" data-slot="0"></div>
+                <div class="shop-slot" data-slot="1"></div>
+                <div class="shop-slot" data-slot="2"></div>
+                <div class="shop-slot" data-slot="3"></div>
+                <div class="shop-slot" data-slot="4"></div>
+            </div>
+        </footer>
+    </div>
+
+    <div id="unit-tooltip" class="tooltip hidden">
+        <!-- Unit details tooltip populated by JS -->
+    </div>
+
+    <div id="game-over-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2 id="game-over-title">Game Over</h2>
+            <p id="game-over-message"></p>
+            <button id="restart-btn" class="action-btn">Play Again</button>
+        </div>
+    </div>
+
+    <!-- Scripts in dependency order -->
+    <script src="data.js"></script>
+    <script src="state.js"></script>
+    <script src="unit.js"></script>
+    <script src="traits.js"></script>
+    <script src="shop.js"></script>
+    <script src="combat.js"></script>
+    <script src="ai.js"></script>
+    <script src="renderer.js"></script>
+    <script src="ui.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

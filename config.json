@@ -1,0 +1,55 @@
+{
+  "version": "1.0.0",
+  "description": "Configuration for Cursor-style scaling agents",
+
+  "execution": {
+    "max_workers": 5,
+    "worker_timeout_minutes": 30,
+    "parallel_execution": true
+  },
+
+  "planning": {
+    "complexity_threshold": 4,
+    "max_tasks_per_plan": 20,
+    "spawn_sub_planners": true,
+    "max_sub_planner_depth": 3
+  },
+
+  "iteration": {
+    "max_iterations_per_task": 3,
+    "escalation_threshold": 5,
+    "fresh_start_threshold": 10
+  },
+
+  "judgment": {
+    "strictness": "balanced",
+    "require_tests": false,
+    "allow_minor_issues": true,
+    "auto_approve_trivial": true
+  },
+
+  "context": {
+    "max_context_size_kb": 100,
+    "archive_on_fresh_start": true,
+    "retain_completed_tasks": true
+  },
+
+  "logging": {
+    "log_decisions": true,
+    "log_state_changes": true,
+    "verbose": false
+  },
+
+  "safety": {
+    "require_human_approval_for": [
+      "database_migrations",
+      "security_changes",
+      "api_breaking_changes"
+    ],
+    "blocked_file_patterns": [
+      ".env*",
+      "**/secrets/**",
+      "**/credentials/**"
+    ]
+  }
+}

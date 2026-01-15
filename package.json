@@ -1,0 +1,25 @@
+{
+  "name": "auto-chess-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ai.js",
+  "scripts": {
+    "test": "node scripts/browser-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://markjspivey-xwisee:github.com/markjspivey-xwisee/auto-chess-v2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/markjspivey-xwisee/auto-chess-v2/issues"
+  },
+  "homepage": "https://github.com/markjspivey-xwisee/auto-chess-v2#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "playwright": "^1.57.0"
+  }
+}
